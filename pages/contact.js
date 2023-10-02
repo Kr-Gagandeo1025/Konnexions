@@ -19,9 +19,9 @@ function Contact() {
 
   useEffect(() => {  
     if (
-      contactDetails.name.length == 0 ||
-      contactDetails.email.length == 0 ||
-      contactDetails.message.length == 0
+      contactDetails.name?.length == 0 ||
+      contactDetails.email?.length == 0 ||
+      contactDetails.message?.length == 0
     ) {
       setFormSubmit(false);
       return;
@@ -33,7 +33,19 @@ function Contact() {
     setGmailError("");
   }, [contactDetails]);
 
-  const handleChange = (e) => {
+  const handleChangeName = (e) => {
+    setContactDetails({
+      ...contactDetails,
+      name: e.target.value,
+    });
+  };
+  const handleChangeEmail = (e) => {
+    setContactDetails({
+      ...contactDetails,
+      email: e.target.value,
+    });
+  };
+  const handleChangeMessage = (e) => {
     setContactDetails({
       ...contactDetails,
       message: e.target.value,
@@ -87,15 +99,15 @@ function Contact() {
                   <div className="flex flex-col justify-center md:flex-row md:gap-8 sm:gap-2 mt-2 w-[100%]">
                     <div className="md:w-[50%] w-[100%]">
                       <div className="text-white mb-1">Name</div>
-                      <input type="text" placeholder="Joseph"
-                        value={contactDetails.name} onChange={handleChange}
+                      <input type="text" placeholder="Joseph" id="name"
+                        value={contactDetails.name} onChange={handleChangeName}
                         className="bg-white/[0.12] border border-white/[0.11] h-[50px] md:h-[60px] rounded w-[100%] px-2 outline-none lg:text-white"
                       />
                     </div>
                     <div className="md:w-[50%] w-[100%]">
                       <div className="text-white mb-1">Email</div>
-                      <input type="gmail" placeholder="Joseph@gmail.com"
-                        value={contactDetails.email} onChange={handleChange}
+                      <input type="gmail" placeholder="Joseph@gmail.com" id="email"
+                        value={contactDetails.email} onChange={handleChangeEmail}
                         className="bg-white/[0.12] border border-white/[0.11] h-[50px] md:h-[60px] rounded w-[100%] px-2 outline-none lg:text-white"
                       />
                     </div>
@@ -103,7 +115,7 @@ function Contact() {
                   <div className="flex flex-col justify-center mt-2">
                     <div className="text-white mb-1">Message</div>
                     <textarea name="message" type="text"
-                      value={contactDetails.message} onChange={handleChange}
+                      value={contactDetails.message} onChange={handleChangeMessage}
                       className="bg-white/[0.12] pt-4 border border-white/[0.11] h-[100px] md:h-[150px] rounded w-[100%] px-2 outline-none text-white"
                       placeholder="Enter a message" style={{ resize: "none" }}
                     />

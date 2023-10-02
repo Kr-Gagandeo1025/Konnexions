@@ -2,9 +2,14 @@
 import React from "react";
 import { FaLink } from "react-icons/fa";
 import Image from "next/image";
+import Tilt from "react-vanilla-tilt";
 
 export default function ResourcesCard({ data }) {
   return (
+    <>
+    <Tilt options={{ scale: 0.5, max: 35,}} style={{
+      backgroundColor: "transparent",
+    }}>
     <div className="relative w-[250px] h-[315px] backdrop-blur rounded-3xl">
       <img
         src="/images/servicesRectangle.png" alt="servicesRectangle"
@@ -31,5 +36,7 @@ export default function ResourcesCard({ data }) {
         </div>
       </div>
     </div>
+    </Tilt>
+    </>
   );
 }

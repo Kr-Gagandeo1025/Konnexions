@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import AnimatedCursor from "react-animated-cursor";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -27,9 +28,19 @@ export default function App({ Component, pageProps }) {
 
   if (!data) return null;
 
-  return (<div className="flex flex-col min-h-screen">
+  return (
+    <>
+    <AnimatedCursor
+    outerSize={35}
+    outerScale={1.7} 
+    outerStyle={{
+    mixBlendMode: 'exclusion'
+  }}/>
+  <div className="flex flex-col min-h-screen">
     <div className="flex-shrink-0 flex-grow-0"><NavBar data={data} /></div>
     <div className="flex-grow"><Component {...pageProps} /></div>
     <Footer />
-  </div>)
+  </div>
+    </>
+  )
 }

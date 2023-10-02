@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import React from "react";
+import Tilt from "react-vanilla-tilt";
 
 const EventsCard = ({ data }) => {
   const fun = () =>{
@@ -40,13 +41,17 @@ const EventsCard = ({ data }) => {
   const handleRegisterClick = () => window.open(data.regLink, "_blank");
 
   return (
+    <>
+    <Tilt options={{ scale: 0.5, max: 35, "max-glare":0 }} style={{
+      backgroundColor: "transparent",
+    }}>
     <div className="w-[370px] md:w-[340px] border border-white/20 rounded-2xl p-5 backdrop-blur text-center">
       <div className="p-2 relative w-full overflow-hidden h-[200px] rounded-lg">
         <Image placeholder="blur" blurDataURL="/images/spinner.svg" height={data.image.height} width={data.image.width}
           src={data.image.url}
           alt={data.name}
           className="object-fit h-full mx-auto w-auto absolute inset-0 rounded-lg"
-        />
+          />
       </div>
       <span className="inline-block pt-4 pb-2 text-lg text-white">{data.name}</span>
       <p className="text-white/40 text-xs leading-7 mt-1">
@@ -55,8 +60,8 @@ const EventsCard = ({ data }) => {
       <div className="flex items-center justify-between mt-3">
         {data.state == "register" && (
           <button
-            className="px-6 py-2 rounded-full bg-transparent hover:bg-gray-700/60"
-            onClick={handleRegisterClick}
+          className="px-6 py-2 rounded-full bg-transparent hover:bg-gray-700/60"
+          onClick={handleRegisterClick}
           >
             <span className="magic">
               {[...Array(3)].map((_, i) => (
@@ -74,6 +79,8 @@ const EventsCard = ({ data }) => {
         <span className="text-white">{data.date}</span>
       </div>
     </div>
+    </Tilt>
+    </>
   );
 }
 
